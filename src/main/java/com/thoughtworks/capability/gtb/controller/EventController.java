@@ -26,7 +26,8 @@ public class EventController {
   }
 
   @PostMapping("/events")
-  public void createEvent(@RequestBody EventVo event) {
-    log.info("create event: {}", event);
+  public String createEvent(@RequestBody EventVo event) {
+    System.out.println("We got "+event);
+    return ("create event: " + event);
   }
 }

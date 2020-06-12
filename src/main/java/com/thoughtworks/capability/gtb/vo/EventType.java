@@ -9,6 +9,14 @@ public enum EventType {
 
   private String code;
 
+  public EventType getEventType(String type){
+    if(type.equals("DOWNLOAD")){
+      return EventType.DOWNLOAD;
+    } else {
+      return EventType.UPLOAD;
+    }
+  }
+
   EventType(String code) {
     this.code = code;
   }
