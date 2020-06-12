@@ -33,7 +33,7 @@ public class EventVoDeserializer extends StdDeserializer<EventVo> {
             eventType = EventType.UPLOAD;
         }
 
-        LocalDateTime timeLocal = LocalDateTime.ofInstant(Instant.ofEpochSecond(time), ZoneId.systemDefault());
+        LocalDateTime timeLocal = LocalDateTime.ofInstant(Instant.ofEpochMilli(time), ZoneId.systemDefault());
 
         UserVo userVo = new UserVo(userId, userName);
 

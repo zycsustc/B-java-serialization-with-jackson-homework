@@ -50,21 +50,9 @@ public class EventVo {
 
     @Override
     public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-      gen.writeNumber(value.atZone(ZoneOffset.UTC).toEpochSecond());
-    }
-  }
-
-  private static class TimeDeserializer extends StdDeserializer<LocalDateTime> {
-
-    protected TimeDeserializer() {
-      super(LocalDateTime.class);
-    }
-
-    @Override
-    public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-      JsonNode node = p.getCodec().readTree(p);
-      LocalDateTime time = LocalDateTime.ofInstant(Instant.ofEpochSecond(node.asLong()), ZoneId.systemDefault());
-      return time;
+      Instant instant = value.atZone(ZoneOffset.UTC).toInstant();
+      long timeInMillis = instant.toEpochMilli();
+      gen.writeNumber(timeInMillis);
     }
   }
 
